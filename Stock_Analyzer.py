@@ -17,11 +17,21 @@ def Portfolio_Risk_Level() :
     
     return risk_level
         
+    
+def Portfolio_Budget():
+    while True :
+        try : 
+            budget =  input("Please enter how much you would like to invest in this portfolio : ")
+            if int(budget) > 0 :
+                break
+        except :
+            pass
+        print("Incorrect input please your budget")
+        
+    return budget
 
 
-print("Your risk level is " + Portfolio_Risk_Level())
-
-
-
+Portfolio_Risk_Level()
+Portfolio_Budget()
 
 
