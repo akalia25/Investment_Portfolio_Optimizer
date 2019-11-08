@@ -5,20 +5,20 @@ Created on Wed Nov  6 19:08:14 2019
 
 @author: adityakalia
 """
-def Portfolio_Risk_Level() :
+def risk_Level() :
     while True :
         try : 
-            risk_level =  input("Please enter the risk level from 1 (Low Risk) to 10 (High Risk) you would like to take on from your portfolio : ")
-            if int(risk_level) > 0 and int(risk_level) <=10 :
+            risk =  input("Please enter the risk level from 1 (Low Risk) or 2 (Med Risk) or 3 (High Risk) you would like to take on from your portfolio : ")
+            if int(risk) > 0 and int(risk) <=3 :
                 break
         except :
             pass
-        print("Incorrect input please enter risk level between 1-10")
+        print("Incorrect input please enter risk level between 1-3")
     
-    return risk_level
+    return risk
         
     
-def Portfolio_Budget():
+def user_Budget():
     while True :
         try : 
             budget =  input("Please enter how much you would like to invest in this portfolio : ")
@@ -31,7 +31,16 @@ def Portfolio_Budget():
     return budget
 
 
-Portfolio_Risk_Level()
-Portfolio_Budget()
+def Portfolio_Type(risk) : 
+    print(type(risk))
+
+
+
+
+risk = risk_Level()
+budget = user_Budget()
+print("The risk is " + risk)
+
+Portfolio_Type(risk_Level)
 
 
