@@ -10,7 +10,7 @@ Created on Wed Nov  6 19:08:14 2019
 Getting the user's risk level
 """
 import yfinance as yf
-import matplotlib 
+import matplotlib.pyplot as plt
 import pprint
 def risk_Level() :
     while True :
@@ -56,11 +56,51 @@ def Portfolio_Type(risk, budget) :
         print()
         print("The user should invest more into fixed-income investments and less equity holdings")
         print()
-        stocksDict = {'EEMV': 0.10, 'ACWV' : 0.10, 'XEF': 0.075 , 'VTI' : 0.05, 'XIC' : 0.025 , 'ZAG': 0.35 , 'ZFL' : 0.20 , 'QTIP' : 0.10}
+        stocksDict = {'EEMV': 0.10, 'ACWV' : 0.10, 'XEF': 0.075 , 'VTI' : 0.05, 'XIC' : 0.025 , 'ZAG': 0.35 ,
+                      'ZFL' : 0.20 , 'QTIP' : 0.10}
         stocksDict = {key:value*budget for key, value in stocksDict.items()}
         print('The following stock allocation should be used ')
         pprint.pprint(stocksDict)
-        
+        labels = stocksDict.keys()
+        vals = stocksDict.values()
+        labels = list(labels)
+        vals = list(vals)
+        plt.pie(vals, labels = labels, autopct='%1.1f%%')  
+        plt.show()
+
+    if risk == 2 :
+        print()
+        print("The user should invest equually in fixed-income investments and equity holdings")
+        print()
+        stocksDict = {'VTI': 0.15, 'EEMV' : 0.15, 'XEF': 0.15 , 'ACWV' : 0.10, 'XIC' : 0.075 , 'VUS': 0.025 ,
+                      'ZFL' : 0.175 , 'QTIP' : 0.10 , 'ZAG' : 0.075}
+        stocksDict = {key:value*budget for key, value in stocksDict.items()}
+        print('The following stock allocation should be used ')
+        pprint.pprint(stocksDict)
+        labels = stocksDict.keys()
+        vals = stocksDict.values()
+        labels = list(labels)
+        vals = list(vals)
+        plt.pie(vals, labels = labels, autopct='%1.1f%%')  
+        plt.show()
+  
+    if risk == 3 :
+        print()
+        print("The user should invest more into equity holdings and less fixed-income investments")
+        print()
+        stocksDict = {'VTI': 0.20, 'XEF' : 0.20, 'EEMV': 0.15 , 'ACWV' : 0.10, 'VUS' : 0.05 , 'ZFL': 0.15 ,
+                      'QTIP' : 0.05}
+        stocksDict = {key:value*budget for key, value in stocksDict.items()}
+        print('The following stock allocation should be used ')
+        pprint.pprint(stocksDict)
+        labels = stocksDict.keys()
+        vals = stocksDict.values()
+        labels = list(labels)
+        vals = list(vals)
+        plt.pie(vals, labels = labels, autopct='%1.1f%%')  
+        plt.show()
+      
+    
     
 
 Portfolio_Type(risk, budget)
