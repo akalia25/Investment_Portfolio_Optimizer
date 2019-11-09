@@ -5,6 +5,13 @@ Created on Wed Nov  6 19:08:14 2019
 
 @author: adityakalia
 """
+
+"""
+Getting the user's risk level
+"""
+import yfinance as yf
+import matplotlib 
+import pprint
 def risk_Level() :
     while True :
         try : 
@@ -17,7 +24,9 @@ def risk_Level() :
     
     return risk
         
-    
+"""
+Getting the user's budget for the portfolio
+"""
 def user_Budget():
     while True :
         try : 
@@ -31,16 +40,29 @@ def user_Budget():
     return budget
 
 
-def Portfolio_Type(risk) : 
-    print(type(risk))
-
-
-
-
 risk = risk_Level()
 budget = user_Budget()
-print("The risk is " + risk)
 
-Portfolio_Type(risk_Level)
+
+"""
+Using the users's specified risk and budget to create an optimal portfolio
+"""
+
+
+def Portfolio_Type(risk, budget) : 
+    risk = int(risk)
+    budget = int(budget)
+    if risk == 1 :
+        print()
+        print("The user should invest more into fixed-income investments and less equity holdings")
+        print()
+        stocksDict = {'EEMV': 0.10, 'ACWV' : 0.10, 'XEF': 0.075 , 'VTI' : 0.05, 'XIC' : 0.025 , 'ZAG': 0.35 , 'ZFL' : 0.20 , 'QTIP' : 0.10}
+        stocksDict = {key:value*budget for key, value in stocksDict.items()}
+        print('The following stock allocation should be used ')
+        pprint.pprint(stocksDict)
+        
+    
+
+Portfolio_Type(risk, budget)
 
 
