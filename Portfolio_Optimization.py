@@ -39,15 +39,9 @@ def user_Budget():
         
     return budget
 
-
-risk = risk_Level()
-budget = user_Budget()
-
-
 """
 Using the users's specified risk and budget to create an optimal portfolio
 """
-
 
 def Portfolio_Type(risk, budget) : 
     risk = int(risk)
@@ -101,8 +95,16 @@ def Portfolio_Type(risk, budget) :
         plt.show()
       
     
-    
 
-Portfolio_Type(risk, budget)
+def main():
+    risk = risk_Level()
+    budget = user_Budget()
+    Portfolio_Type(risk, budget)
+
+    
+    
+if __name__ == '__main__':
+    main()
+
 
 
