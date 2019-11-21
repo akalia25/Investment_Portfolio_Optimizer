@@ -6,12 +6,13 @@ Created on Wed Nov  6 19:08:14 2019
 @author: adityakalia
 """
 
-"""
-Getting the user's risk level
-"""
+
 import pprint
 import matplotlib.pyplot as plt
 def risk_Level():
+"""
+Getting the user's risk level
+"""
     while True:
         try:
             risk = input("Please enter the risk level from 1 (Low Risk) " +
@@ -24,11 +25,11 @@ def risk_Level():
         print("Incorrect input please enter risk level between 1-3")
     return risk
 
+
+def user_Budget():
 """
 Getting the user's budget for the portfolio
 """
-
-def user_Budget():
     while True:
         try:
             budget = input("Please enter how much you would like to invest " +
@@ -37,18 +38,19 @@ def user_Budget():
                 break
         except:
             pass
-        print("Incorrect input please your budget")        
+        print("Incorrect input please your budget")
     return budget
 
+
+
+def Portfolio_Type(risk, budget):
 """
 Using the users's specified risk and budget to create an optimal portfolio
 """
-
-def Portfolio_Type(risk, budget):
     risk = int(risk)
     budget = int(budget)
     if risk == 1:
-        print("\nThe user should invest more into fixed-income investments " + 
+        print("\nThe user should invest more into fixed-income investments " +
               "and less equity holdings\n")
         print()
         stocksDict = {'EEMV': 0.10, 'ACWV' : 0.10, 'XEF': 0.075, 'VTI' : 0.05,
@@ -79,8 +81,9 @@ def Portfolio_Type(risk, budget):
         vals = stocksDict.values()
         labels = list(labels)
         vals = list(vals)
-        plt.pie(vals, labels = labels, autopct='%1.1f%%')  
+        plt.pie(vals, labels = labels, autopct='%1.1f%%')
         plt.show()
+
     if risk == 3:
         print()
         print("The user should invest more into equity holdings and " +
@@ -103,7 +106,7 @@ def main():
     risk = risk_Level()
     budget = user_Budget()
     Portfolio_Type(risk, budget)
- 
+
 if __name__ == '__main__':
     main()
 
