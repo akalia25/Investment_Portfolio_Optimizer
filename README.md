@@ -3,7 +3,7 @@ Stock Portfolio Analyzer
 
 The purpose of this script is to provide users with an optimized portfolio based on their risk and budget to invest in ETF's. This advice should be taken at user's own caution.
 
-The program works by requesting the users risk level from a scale of 1(low risk) to 3(high risk). After this input has been fufilled the program asks for the users budget (how much money they would like to invest). When these inputs are completed, the program outputs a tailored Portfolio consisting of ETFs and the dollar amount the user should invest in each ETF. The program visualizes the investments and percentage invested in an efficent pie chart (see below for sample).
+The program works by requesting the users risk level from a scale of 1(low risk) to 3(high risk). After this input has been fufilled the program asks for the users budget (how much money they would like to invest). When these inputs are completed, the program outputs a tailored Portfolio consisting of ETFs and the dollar amount the user should invest in each ETF. The program visualizes the investments and percentage invested in an efficent pie chart (see below).
 ![alt text](https://github.com/akalia25/Investment_Portfolio_Optimizer/blob/master/screenshots/Portfolio_breakdown.png)
 
 
