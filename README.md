@@ -12,4 +12,10 @@ The output should be like the screenshot below:
 ![alt text](https://github.com/akalia25/Investment_Portfolio_Optimizer/blob/master/screenshots/Sample_Test.png)
 
 
+This program also has the functionality to show how the Optimal Portfolio would perform against the market (SPY) over a dynamic 1 year time frame.
+![alt text](https://github.com/akalia25/Investment_Portfolio_Optimizer/blob/master/screenshots/PortfolioVisualization.png)
+
+
+The program calculates the portfolios performance by first gathering the allocation percentage of each stock in the portfolio, and then multiplying that with that the normalized stock prices. After this calculation is done, the program takes the sum of across the row, and calculates the portfolios daily return. The portfolios daily return is then normalized and compared against the markets daily return for a one year timeframe, as shown above. 
+
 
