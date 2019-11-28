@@ -59,19 +59,6 @@ def Portfolio_Type(risk, budget):
         stocksDict = {'EEMV': 0.10, 'ACWV': 0.10, 'XEF.TO': 0.075, 'VTI': 0.05,
                       'XIC.TO': 0.025, 'ZAG.TO': 0.35,
                       'ZFL.TO': 0.20, 'QTIP.NE': 0.10}
-        stocks = [key for key in stocksDict]
-        df = pd.DataFrame()
-        for x in stocks:
-            stock = yf.Ticker(x)
-            tempdf = stock.history(period='1mo')
-            tempdf.loc[:, 'StockName'] = x
-            df = df.append(tempdf, sort='False')
-            df.loc[:, 'ROI'] = df['Close'].pct_change()
-        plotdf = df.loc[:, ['StockName', 'ROI']]
-        plotdf = plotdf.fillna(0)
-        plotdf = plotdf.drop(plotdf.index[0])
-        plotdf = plotdf.pivot(index=plotdf.index, columns='StockName')
-        plotdf.plot(ylim=(-1, 1))
         stocksDict = {key: value*budget for key, value in stocksDict.items()}
         print('The following stock allocation should be used ')
         pprint.pprint(stocksDict)
@@ -118,10 +105,48 @@ def Portfolio_Type(risk, budget):
         plt.show()
 
 
+def PortfolioAnalysis(risk):
+    risk = int(risk)
+    if risk == 1:
+        print('\n The graph shows how the portfolio would compare against ' +
+              'the market with normalized prices'
+              )
+        stocksDict = {'XEF.TO': 0.25, 'XIC.TO': 0.25,
+                      'ZAG.TO': 0.35, 'ZFL.TO': 0.15}
+        stocks = [key for key in stocksDict]
+        allocation = list(stocksDict.values())
+        investedAmount = 10000
+        df = pd.DataFrame()
+        for x in stocks:
+            stock = yf.Ticker(x)
+            tempdf = stock.history(period='1y')
+            tempdf.loc[:, 'StockName'] = x
+            df = df.append(tempdf, sort='False')
+        stockDF = df.loc[:, ['StockName', 'Close']]
+        stockDF = stockDF.pivot(index=stockDF.index, columns='StockName')
+        norm = stockDF/stockDF.iloc[0]
+        portfolioNorm = norm * allocation
+        dollarPortfolioVal = portfolioNorm * investedAmount
+        dailyReturn = dollarPortfolioVal.sum(axis=1)
+        dailyNormReturn = dailyReturn / dailyReturn.iloc[0]
+        marketVal = yf.Ticker('SPY')
+        df1 = marketVal.history(period='1y')
+        marketDF = df1.loc[:, ['Close']]
+        marketDF = marketDF.rename(columns={'Close': 'SPY Market'})
+        normPlotDF = marketDF/marketDF.iloc[0]
+        normPlotDF['Normalized Portfolio'] = dailyNormReturn
+        ax = normPlotDF.plot(legend=True, grid=True,
+                             title='Portfolio Performance VS. Market(SPY)')
+        ax.set_ylabel('Normalized Price')
+        ax.set_xlabel('Date')
+        plt.show()
+
+
 def main():
     risk = risk_Level()
     budget = user_Budget()
     Portfolio_Type(risk, budget)
+    PortfolioAnalysis(risk)
 
 if __name__ == '__main__':
     main()
