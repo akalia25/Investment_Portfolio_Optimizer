@@ -115,8 +115,11 @@ def PortfolioAnalysis(risk):
                       'ZAG.TO': 0.35, 'ZFL.TO': 0.15}
         stocks = [key for key in stocksDict]
         allocation = list(stocksDict.values())
+        # Hypotheical amount of $10,000 to show performance of portfolio \
+        # against performance of market
         investedAmount = 10000
         df = pd.DataFrame()
+        # Retrieving historical data from stocks using yfinance
         for x in stocks:
             stock = yf.Ticker(x)
             tempdf = stock.history(period='1y')
