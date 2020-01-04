@@ -151,5 +151,6 @@ def main():
     Portfolio_Type(risk, budget)
     PortfolioAnalysis(risk)
 
+
 if __name__ == '__main__':
     main()
